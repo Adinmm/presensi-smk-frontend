@@ -22,7 +22,7 @@ export default function Login() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Mencegah reload halaman bawaan form browser
-    
+
     if (!dataLogin.email || !dataLogin.password) {
       showError("Data tidak lengkap");
       return;
@@ -55,7 +55,9 @@ export default function Login() {
         <div className="space-y-6 max-w-lg relative z-10 my-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs backdrop-blur-sm shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-medium tracking-wide">Versi Terbaru v2.0</span>
+            <span className="font-medium tracking-wide">
+              Versi Terbaru v2.0
+            </span>
           </div>
           <h1 className="text-4xl xl:text-5xl font-extrabold tracking-tight leading-[1.15]">
             Sistem presensi siswa yang{" "}
@@ -81,14 +83,16 @@ export default function Login() {
       <div className="flex items-center justify-center p-6 sm:p-12 relative bg-dot-pattern">
         {/* Dekorasi halus sisi kanan */}
         <div className="absolute top-10 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-        
+
         <Card className="w-full max-w-md border-slate-200/80 dark:border-slate-800/80 shadow-2xl shadow-slate-200/40 dark:shadow-none backdrop-blur-md bg-white/95 dark:bg-slate-900/95 transition-all duration-300 hover:shadow-primary/5">
           <CardHeader className="space-y-2 pb-6">
             <div className="lg:hidden flex items-center gap-2 mb-4">
               <div className="p-1.5 bg-primary rounded-lg text-primary-foreground shadow-sm">
                 <GraduationCap className="h-5 w-5" />
               </div>
-              <span className="font-bold tracking-wider text-sm uppercase">Presensi SMK</span>
+              <span className="font-bold tracking-wider text-sm uppercase">
+                Presensi SMK
+              </span>
             </div>
             <CardTitle className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
               Selamat Datang Kembali
@@ -100,10 +104,12 @@ export default function Login() {
           <CardContent>
             {/* Membungkus input dengan form agar mendukung submit via tombol Enter */}
             <form onSubmit={onSubmit} className="space-y-4">
-              {/* Input Email / Username */}
               <div className="space-y-2">
-                <Label htmlFor="u" className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Email / Username
+                <Label
+                  htmlFor="u"
+                  className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                >
+                  Username
                 </Label>
                 <div className="relative group">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-primary transition-colors duration-200 pointer-events-none" />
@@ -126,7 +132,10 @@ export default function Login() {
 
               {/* Input Password */}
               <div className="space-y-2">
-                <Label htmlFor="p" className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <Label
+                  htmlFor="p"
+                  className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                >
                   Password
                 </Label>
                 <div className="relative group">
@@ -152,14 +161,18 @@ export default function Login() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1 rounded-md"
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4" />
+                    ) : (
+                      <Eye className="h-4 w-4" />
+                    )}
                   </button>
                 </div>
               </div>
 
               {/* Tombol Submit */}
-              <Button 
-                className="w-full mt-6 h-11 font-medium transition-all duration-200 shadow-lg shadow-primary/10 hover:shadow-primary/20 active:scale-[0.98]" 
+              <Button
+                className="w-full mt-6 h-11 font-medium transition-all duration-200 shadow-lg shadow-primary/10 hover:shadow-primary/20 active:scale-[0.98]"
                 type="submit"
                 disabled={mutation.isPending}
               >
