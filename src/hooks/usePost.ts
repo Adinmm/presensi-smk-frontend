@@ -80,8 +80,10 @@ export const useLogin = () => {
 
       showSuccess("Berhasil login", false, "/");
     },
-    onError: () => {
+    onError: (err:any) => {
       showError("Gagal login");
+      console.log(err.response);
+      
     },
   });
   return { mutation };
