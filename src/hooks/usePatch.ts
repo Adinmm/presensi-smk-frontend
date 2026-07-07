@@ -53,6 +53,7 @@ export const useUpdateStatus = () => {
     mutationFn: async (data: { status: string; id: string }) => {
       const res = await axiosInstance.patch(`/attendance/${data.id}`, {
         status: data.status,
+      },{
         withCredentials: true
       });
       return res.data;
@@ -63,9 +64,34 @@ export const useUpdateStatus = () => {
     },
     onError: (err: any) => {
       showError("Status kehadiran gagal diubah");
+    
+      
     },
   });
   return {
     mutation,
   };
 };
+
+export const useChangePassword = ()=>{
+  const mutation = useMutation({
+    mutationKey: ["change-password"],
+    mutationFn: async (data: { password: string, password_confirmation: string }) => {
+      const res = await axiosInstance.patch(`/reset-password`, data, {
+        withCredentials: true,
+      });
+      return res.data;
+    },
+    onSuccess: () => {
+      showSuccess("Password berhasil diubah", true);
+    },
+    onError: (err: any) => {
+      showError("Password gagal diubah");
+   
+      
+    },
+  });
+  return {
+    mutation,
+  };
+}

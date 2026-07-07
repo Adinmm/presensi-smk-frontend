@@ -29,14 +29,20 @@ import {
 
 import { kelasSiswa } from "@/lib/state";
 import { LoadingOverlay } from "@/components/utils/LoadingOverlay";
-import { useEffect } from "react";
 import { EmptyDataResponse } from "@/components/utils/Response";
+import { useDeleteClass } from "@/hooks/useDelete";
+import { AlertDialogDelete } from "@/components/utils/AlertDialog";
 
 export default function Kelas() {
   const { toast } = useToast();
   const { classFilter, setClassFilter } = kelasSiswa();
 
   const { data: classes, isLoading, isError, error } = useGetClass(classFilter);
+  const { mutation } = useDeleteClass();
+
+  const onDelete = (id: string) => {
+    mutation.mutate(id);
+  };
 
   const kelas = [
     {
@@ -53,13 +59,9 @@ export default function Kelas() {
     },
   ];
 
-  useEffect(() => {
-    console.log(classes);
-  });
-
   return (
     <div className="space-y-6">
-      {/* <LoadingOverlay/> */}
+      {mutation.isPending && <LoadingOverlay />}
       <div className="flex items-end justify-between gap-3 flex-wrap">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Kelas</h1>
@@ -100,7 +102,7 @@ export default function Kelas() {
             </div>
           </div>
           {isError ? (
-           <EmptyDataResponse
+            <EmptyDataResponse
               title="Terjadi kesalahan"
               message="Terjadi kesalahan saat mengambil data kelas. Silahkan coba lagi."
             />
@@ -171,25 +173,14 @@ export default function Kelas() {
                               }
                               data={c}
                             />
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => {
-                                if (classes?.data?.length > 0) {
-                                  toast({
-                                    title: "Tidak dapat dihapus",
-                                    description: "Kelas masih memiliki siswa.",
-                                    variant: "destructive",
-                                  });
-                                  return;
-                                }
-                                if (confirm(`Hapus kelas ${c.nama_kelas}?`)) {
-                                  toast({ title: "Kelas dihapus" });
-                                }
-                              }}
-                            >
-                              <Trash2 className="h-4 w-4 text-destructive" />
-                            </Button>
+                            <AlertDialogDelete
+                              buttonTrigger={
+                                <Button variant="ghost" size="icon">
+                                  <Trash2 className="h-4 w-4 text-destructive" />
+                                </Button>
+                              }
+                              onSubmit={() => onDelete(c.id ?? "")}
+                            />
                           </TableCell>
                         </TableRow>
                       );

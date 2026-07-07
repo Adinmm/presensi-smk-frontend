@@ -82,7 +82,7 @@ export const useLogin = () => {
     },
     onError: (err:any) => {
       showError("Gagal login");
-      console.log(err);
+
       
     },
   });
@@ -105,7 +105,7 @@ export const useLogOut = () => {
     },
     onError: (err: any) => {
       showError("Gagal logout");
-      console.log(err.response);
+  
     },
   });
   return { mutation };
