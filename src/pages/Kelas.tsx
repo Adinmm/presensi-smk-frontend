@@ -149,11 +149,11 @@ export default function Kelas() {
                       return (
                         <TableRow key={c.id}>
                           <TableCell className="font-medium">{i + 1}</TableCell>
-                          <TableCell className="font-medium">
+                          <TableCell className="font-medium truncate">
                             {c.nama_kelas}
                           </TableCell>
                           <TableCell>{c.jurusan}</TableCell>
-                          <TableCell>
+                          <TableCell className="truncate">
                             Kelas{" "}
                             {c.tingkat === "10"
                               ? "X"

@@ -229,7 +229,7 @@ export default function Siswa() {
                           <TableCell className="truncate">
                             {s?.kelas?.nama_kelas}
                           </TableCell>
-                          <TableCell>
+                          <TableCell className="truncate">
                             {s?.jenis_kelamin === "L"
                               ? "Laki-laki"
                               : "Perempuan"}

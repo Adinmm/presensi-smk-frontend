@@ -247,7 +247,7 @@ export default function Laporan() {
                     <TableCell className="text-muted-foreground font-medium">
                       {i + 1}
                     </TableCell>
-                    <TableCell className="tabular-nums text-foreground/80">
+                    <TableCell className="tabular-nums text-foreground/80 truncate">
                       {r.nis}
                     </TableCell>
                     <TableCell className="font-semibold text-foreground">

@@ -226,11 +226,11 @@ export default function Riwayat() {
                         <TableCell className="whitespace-nowrap">
                           {formatDateID(r.date)}
                         </TableCell>
-                        <TableCell>{r?.student?.nis}</TableCell>
+                        <TableCell className="truncate">{r?.student?.nis}</TableCell>
                         <TableCell className="font-medium">
                           {r?.student?.nama_lengkap}
                         </TableCell>
-                        <TableCell>{r?.kelas?.nama_kelas}</TableCell>
+                        <TableCell className="truncate">{r?.kelas?.nama_kelas}</TableCell>
                         <TableCell>
                           {formatKeJamMenit(r.created_at ?? "") ?? "—"}
                         </TableCell>
