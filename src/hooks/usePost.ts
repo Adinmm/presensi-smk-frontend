@@ -82,7 +82,7 @@ export const useLogin = () => {
     },
     onError: (err:any) => {
       showError("Gagal login");
-      console.log(err.response);
+      console.log(err);
       
     },
   });
