@@ -133,12 +133,13 @@ export default function Presensi() {
       'Semua siswa ditandai dengan status "' +
         STATUSES.find((s) => s.key === status)?.label +
         '"',
+      false,
     );
   };
 
   const deleteAllMark = () => {
     setAttendance({});
-    showSuccess("Semua presensi telah dihapus");
+    showSuccess("Semua presensi telah dihapus",false);
   };
 
   const handleSubmit = () => {
