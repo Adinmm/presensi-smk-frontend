@@ -92,6 +92,10 @@ export default function Siswa() {
     setPage(1);
   };
 
+  const showing = (dataShow:string)=>{
+    setShow(dataShow);
+    setPage(1)
+  }
   return (
     <div className="space-y-6">
       {mutation.isPending && <LoadingOverlay />}
@@ -151,7 +155,7 @@ export default function Siswa() {
           <div className="space-y-1.5">
             <div className="flex items-center space-x-2 text-sm text-muted-foreground font-medium">
               <span>Menampilkan</span>
-              <Select value={show} onValueChange={setShow} defaultValue="10">
+              <Select value={show} onValueChange={showing} defaultValue="10">
                 <SelectTrigger className="w-[70px] border-muted-foreground/20 focus:ring-1 focus:ring-primary">
                   <SelectValue />
                 </SelectTrigger>
@@ -261,7 +265,7 @@ export default function Siswa() {
           )}
         </CardContent>
       </Card>
-      {!isLoading || students?.data?.items?.length && (
+      {(!isLoading || students?.data?.items?.length )&& (
         <div className="p-3">
           <Pagination>
             <PaginationContent>
