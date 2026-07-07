@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/button";
 
 import { useAuth } from "@/lib/auth";
 
-import {  exportXLS, formatKeJamMenit } from "@/lib/helpers";
-import { useGetAllData } from "@/hooks/useGet";
+import { exportXLS, formatKeJamMenit } from "@/lib/helpers";
+import { useGetAllData, useGetMe } from "@/hooks/useGet";
 import { showSuccess } from "@/hooks/useToast";
 
 export default function Pengaturan() {
   const { user } = useAuth();
-
+  const { data: me } = useGetMe();
 
   const { data, isLoading } = useGetAllData();
 
@@ -81,15 +81,15 @@ export default function Pengaturan() {
         <CardContent className="space-y-2 text-sm">
           <div className="flex justify-between border-b py-2">
             <span className="text-muted-foreground">Nama</span>
-            <span className="font-medium">{user?.name}</span>
+            <span className="font-medium">{me?.data?.name}</span>
           </div>
           <div className="flex justify-between border-b py-2">
-            <span className="text-muted-foreground">Username</span>
-            <span className="font-medium">{user?.username}</span>
+            <span className="text-muted-foreground">Email</span>
+            <span className="font-medium">{me?.data?.email}</span>
           </div>
           <div className="flex justify-between py-2">
             <span className="text-muted-foreground">Peran</span>
-            <span className="font-medium capitalize">{user?.role}</span>
+            <span className="font-medium capitalize">{me?.data?.role}</span>
           </div>
         </CardContent>
       </Card>
@@ -123,7 +123,7 @@ export default function Pengaturan() {
             <strong className="text-foreground">Presensi SMK</strong> — Sistem
             kehadiran digital untuk Sekolah Menengah Kejuruan.
           </p>
-          <p>Versi 1.0.0 · </p>
+          <p>Versi 2.0.0 · </p>
         </CardContent>
       </Card>
     </div>
