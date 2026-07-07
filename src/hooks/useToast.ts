@@ -8,7 +8,7 @@ export const showSuccess = (
   toast.success(message, {
     duration: 3000,
     onAutoClose: () => {
-      if (navigate !== "") {
+      if (navigate !== "" && navigate !== undefined) {
         window.location.href = navigate as string;
         return;
       }
