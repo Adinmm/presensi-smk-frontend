@@ -43,17 +43,21 @@ export const useCreateClass = () => {
 };
 
 export const useCreateAttendence = () => {
+  const idempotencyKey = crypto.randomUUID();
   const mutation = useMutation({
     mutationKey: ["create-attendence"],
     mutationFn: async (data: Attendences[]) => {
       const res = await axiosInstance.post("/attendance", data, {
         withCredentials: true,
+        headers: {
+          "idempotency-key": idempotencyKey,
+        },
       });
       return res.data;
     },
 
     onSuccess: async () => {
-      showSuccess(" Presensi berhasil ditambahkan");
+      showSuccess("Presensi berhasil ditambahkan");
     },
     onError: (err: any) => {
       showError(err.response.data.message);
@@ -80,10 +84,8 @@ export const useLogin = () => {
 
       showSuccess("Berhasil login", false, "/");
     },
-    onError: (err:any) => {
+    onError: (err: any) => {
       showError("Gagal login");
-
-      
     },
   });
   return { mutation };
@@ -94,9 +96,13 @@ export const useLogOut = () => {
   const mutation = useMutation({
     mutationKey: ["logout"],
     mutationFn: async () => {
-      const res = await axiosInstance.post("/logout",{}, {
-        withCredentials: true,
-      });
+      const res = await axiosInstance.post(
+        "/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      );
       return res.data;
     },
     onSuccess: () => {
@@ -105,7 +111,6 @@ export const useLogOut = () => {
     },
     onError: (err: any) => {
       showError("Gagal logout");
-  
     },
   });
   return { mutation };
